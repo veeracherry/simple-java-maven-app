@@ -1,10 +1,19 @@
 pipeline { 
-    agent any  
+    agent any
+    environment {
+        PATH="/home/ec2-user/maven/apache-maven-3.8.5/bin:$PATH"
     stages { 
         stage('Build') { 
             steps { 
-               echo 'This is a minimal pipeline.' 
+               echo ' 1st stage'
+                 sh 'mvn clean install'
             }
         }
+          stage('deploy') {
+            steps {
+               echo ' 2nd stage'
+                 sh 'mvn clean deploy'
+            }
+        }
+      }
     }
-}
