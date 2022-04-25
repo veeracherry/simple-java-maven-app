@@ -7,10 +7,15 @@ pipeline {
                  sh 'mvn clean install'
             }
         }
-          stage('deploy') {
-            steps {
-               echo ' 2nd stage'
-                 sh 'mvn clean deploy'
+        stage('2ndstage') {
+          steps {
+            input('Do you want me to proceed?')
+            }
+        }  
+        stage('deploy') {
+          steps {
+            echo ' 3rd stage'
+            sh 'mvn clean deploy'
             }
         }
       }
